@@ -4,11 +4,11 @@
 
 TODO:
 
-- [] Add Jigasi to the deployment
-- [] Manually create HA deployment
-- [] Configure healthchecks
-- [] Configure to use templates
-- [] Update images to a more recent version
+- [ ] Add Jigasi to the deployment
+- [ ] Manually create HA deployment
+- [ ] Configure healthchecks
+- [ ] Configure to use templates
+- [ ] Update images to a more recent version
 
 To install run the following command:
 
