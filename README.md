@@ -1,1 +1,3 @@
-# jitsi-helm
+# Jitsi Helm Chart
+
+
