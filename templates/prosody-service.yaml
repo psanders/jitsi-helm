@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: prosody
+  name: prosody
+spec:
+  ports:
+  - name: "5222"
+    port: 5222
+    protocol: TCP
+    targetPort: 5222
+  - name: "5347"
+    port: 5347
+    protocol: TCP
+    targetPort: 5347
+  - name: "5280"
+    port: 5280
+    protocol: TCP
+    targetPort: 5280
+  selector:
+    io.kompose.service: prosody
+  type: ClusterIP
+
+
+
