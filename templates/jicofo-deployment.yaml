@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jicofo
+  name: jicofo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jicofo
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+        kompose.version: 1.22.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: jicofo
+    spec:
+      containers:
+        - env:
+            - name: JIBRI_BREWERY_MUC
+              value: jibribrewery
+            - name: JIBRI_PENDING_TIMEOUT
+              value: "90"
+            - name: JICOFO_AUTH_PASSWORD
+              value: 4d0b42c7ff65eabba9ccd3f4f9257432
+            - name: JICOFO_AUTH_USER
+              value: focus
+            - name: JICOFO_COMPONENT_SECRET
+              value: da9bbdaf714bc6702be1355b5d8feaf3
+            - name: JIGASI_BREWERY_MUC
+              value: jigasibrewery
+            - name: JVB_BREWERY_MUC
+              value: jvbbrewery
+            - name: TZ
+              value: UTC
+            - name: XMPP_AUTH_DOMAIN
+              value: auth.meet.jitsi
+            - name: XMPP_DOMAIN
+              value: meet.jitsi
+            - name: XMPP_INTERNAL_MUC_DOMAIN
+              value: internal-muc.meet.jitsi
+            - name: XMPP_MUC_DOMAIN
+              value: muc.meet.jitsi
+            - name: XMPP_SERVER
+              value: prosody
+          image: jitsi/jicofo:stable-4857
+          name: jicofo
+          resources: {}
+      restartPolicy: Always
+status: {}

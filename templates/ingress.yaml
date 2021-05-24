@@ -1,0 +1,21 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: jitsi
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '3600'
+spec:
+  #tls:
+  #  - hosts:
+  #      - jitsi.example.com
+  #    secretName: jitsi-example-com-tls
+  rules:
+    - host: jitsi.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: web
+              servicePort: 80

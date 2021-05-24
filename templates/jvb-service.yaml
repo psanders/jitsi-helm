@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jvb
+  name: jvb
+spec:
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  ports:
+    - name: "30300"
+      port: 30300
+      targetPort: 30300
+    - name: "30301"
+      port: 30301
+      targetPort: 30301
+    - name: "9090"
+      port: 9090
+      targetPort: 9090
+  selector:
+    io.kompose.service: jvb
+status:
+  loadBalancer: {}

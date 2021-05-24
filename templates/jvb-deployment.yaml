@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jvb
+  name: jvb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jvb
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+        kompose.version: 1.22.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: jvb
+    spec:
+      containers:
+        - env:
+            - name: DOCKER_HOST_ADDRESS
+              value: 192.168.65.4
+            - name: JVB_AUTH_PASSWORD
+              value: e9987ea522e96fe69ebf74ea70dab43c
+            - name: JVB_AUTH_USER
+              value: jvb
+            - name: JVB_BREWERY_MUC
+              value: jvbbrewery
+            - name: JVB_PORT
+              value: "30300"
+            - name: JVB_STUN_SERVERS
+              value: meet-jit-si-turnrelay.jitsi.net:443
+            - name: JVB_TCP_HARVESTER_DISABLED
+              value: "true"
+            - name: JVB_TCP_MAPPED_PORT
+              value: "30301"
+            - name: JVB_TCP_PORT
+              value: "30301"
+            - name: PUBLIC_URL
+              value: http://jitsi.example.com
+            - name: TZ
+              value: UTC
+            - name: XMPP_AUTH_DOMAIN
+              value: auth.meet.jitsi
+            - name: XMPP_INTERNAL_MUC_DOMAIN
+              value: internal-muc.meet.jitsi
+            - name: XMPP_SERVER
+              value: prosody
+          image: jitsi/jvb:stable-4857
+          name: jvb
+          ports:
+            - containerPort: 30300
+            - containerPort: 30301
+            - containerPort: 9090
+          resources: {}
+      restartPolicy: Always
+status: {}
